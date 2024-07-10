@@ -27,7 +27,7 @@ It will look at the contents of shell.nix for the packages it needs.
 
 At the time of writing my Job is moving to JDK 21, some issues arose from specific Scala dependencies 
 Rather than setting my local dev machine to JDK 8 or 11 to fix my sbt issue. 
- already had Nix installed so can utilise Nix for a temporary nix shell to set and point to JDK 11 
+I already had Nix installed so can utilise Nix for a temporary nix shell to set and point to JDK 11 
 
 ```bash
 nix-shell
