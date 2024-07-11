@@ -1,21 +1,5 @@
 # shell.nix
 
-#{ pkgs ? import <nixpkgs> {} }:
-#
-#pkgs.mkShell {
-#  buildInputs = with pkgs; [
-#    pkgs.openjdk11
-#  ];
-#
-#  # Set JAVA_HOME and PATH
-#  shellHook = ''
-#    export JAVA_HOME=${pkgs.openjdk11}/jre
-#    export PATH=${pkgs.openjdk11}/bin:$PATH
-#  '';
-#}
-
-# shell.nix
-
 { pkgs ? import <nixpkgs> {} }:
 
 pkgs.mkShell {

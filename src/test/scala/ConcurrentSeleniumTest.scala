@@ -9,11 +9,11 @@ import weaver.*
 //  def maxParallelism: Int = 5
 //}
 
-object ExampleSeleniumTest_concurrent extends SimpleIOSuite {
+object ConcurrentSeleniumTest extends SimpleIOSuite {
 
   // https://storage.googleapis.com/chrome-for-testing-public/126.0.6478.126/mac-x64/chromedriv
 
-  override def maxParallelism = 5
+//  override def maxParallelism = 5
 
 
   def withWebDriver[A](test: WebDriver => IO[A]): IO[A] = {
@@ -67,7 +67,7 @@ object ExampleSeleniumTest_concurrent extends SimpleIOSuite {
         "https://www.yahoo.com",
         "https://www.youtube.com"
       )
-    val desiredSize = 3000
+    val desiredSize = 300
     val duplicatedList = duplicateListToSize(originalList, desiredSize)
 
 

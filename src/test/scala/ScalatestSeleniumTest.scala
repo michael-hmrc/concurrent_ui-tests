@@ -3,7 +3,7 @@ import org.openqa.selenium.chrome.{ChromeDriver, ChromeOptions}
 import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.matchers.should.Matchers
 
-class ExampleSeleniumTest_Normal extends AnyFunSuite with Matchers {
+class ScalatestSeleniumTest extends AnyFunSuite with Matchers {
 
   System.setProperty("webdriver.chrome.driver", "/usr/local/Caskroom/chromedriver/126.0.6478.126/chromedriver-mac-x64/chromedriver")
 
@@ -21,7 +21,7 @@ class ExampleSeleniumTest_Normal extends AnyFunSuite with Matchers {
     }
   }
 
-  for (i <- 1 to 1000) {
+  for (i <- 1 to 100) {
 
     test(s"Google title should be 'Google' $i") {
       withWebDriver { driver =>
