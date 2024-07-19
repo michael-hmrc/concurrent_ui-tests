@@ -1,12 +1,12 @@
 ThisBuild / version := "0.1.0-SNAPSHOT"
 
-ThisBuild / scalaVersion := "3.2.2"
+ThisBuild / scalaVersion := "2.13.14"
 
 name := "scalatest-selenium-project"
 
 version := "0.1"
 
-scalaVersion := "3.2.2"
+//scalaVersion := "2.13.14"
 
 libraryDependencies ++= Seq(
   "org.scalatest" %% "scalatest" % "3.2.18" % Test,
@@ -26,5 +26,5 @@ scalacOptions ++= Seq(
   "-Xlint",
   "-Ywarn-dead-code",
   "-Ywarn-unused",
-  "-Ywarn-unused-import"
+//  "-Ywarn-unused-import"
 )
