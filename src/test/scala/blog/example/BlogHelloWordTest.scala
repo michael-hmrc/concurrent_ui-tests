@@ -14,7 +14,8 @@ object BlogHelloWordTest extends SimpleIOSuite {
 
   def withWebDriver[A](test: WebDriver => IO[A]): IO[A] = {
     val acquire = IO {
-      System.setProperty("webdriver.chrome.driver", "/usr/local/Caskroom/chromedriver/126.0.6478.126/chromedriver-mac-x64/chromedriver")
+//      System.setProperty("webdriver.chrome.driver", "/usr/local/Caskroom/chromedriver/126.0.6478.126/chromedriver-mac-x64/chromedriver")
+      System.setProperty("webdriver.chrome.driver", "/home/runner/.nix-profile/bin/chromedriver")
       val options = new ChromeOptions()
       options.addArguments("--remote-allow-origins=*")
 //      options.addArguments("--headless")
