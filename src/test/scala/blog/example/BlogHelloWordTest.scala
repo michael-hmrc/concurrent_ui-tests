@@ -18,7 +18,10 @@ object BlogHelloWordTest extends SimpleIOSuite {
       System.setProperty("webdriver.chrome.driver", "/home/runner/.nix-profile/bin/chromedriver")
       val options = new ChromeOptions()
       options.addArguments("--remote-allow-origins=*")
-//      options.addArguments("--headless")
+      options.addArguments("--headless")
+      options.addArguments("--disable-gpu")
+      options.addArguments("--no-sandbox")
+      options.addArguments("--disable-dev-shm-usage")
       new ChromeDriver(options)
     }
 
