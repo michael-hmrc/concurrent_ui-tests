@@ -17,7 +17,7 @@ object BlogHelloWordTest extends SimpleIOSuite {
       System.setProperty("webdriver.chrome.driver", "/usr/local/Caskroom/chromedriver/126.0.6478.126/chromedriver-mac-x64/chromedriver")
       val options = new ChromeOptions()
       options.addArguments("--remote-allow-origins=*")
-      options.addArguments("--headless")
+//      options.addArguments("--headless")
       new ChromeDriver(options)
     }
 
@@ -30,12 +30,12 @@ object BlogHelloWordTest extends SimpleIOSuite {
     withWebDriver { driver =>
       for {
         _ <- IO(driver.get("http://localhost:3000/"))
-        getHomePageHeading = driver.findElement(By.id("landing-page-name")).getText
+        getHomePageHeading = driver.findElement(By.cssSelector("#home")).getText
         _ = println(getHomePageHeading)
-        _ <- IO(getHomePageHeading shouldBe "Michael Yau")
+        _ <- IO(getHomePageHeading shouldBe "Home")
         aboutLink: WebElement = driver.findElement(By.id("about"))
         _ <- IO(aboutLink.click())
-        aboutPageH1: String = driver.findElement(By.cssSelector("#root > div > div > h1")).getText
+        aboutPageH1: String = driver.findElement(By.cssSelector("#root > div > div.flex-grow.container.mx-auto.p-5 > div > h1")).getText
         finalResult <- IO(aboutPageH1 shouldBe "About")
         _ <- IO.sleep(5.seconds)
       } yield {
@@ -48,12 +48,13 @@ object BlogHelloWordTest extends SimpleIOSuite {
     withWebDriver { driver =>
       for {
         _ <- IO(driver.get("http://localhost:3000/"))
-        getHomePageHeading = driver.findElement(By.id("landing-page-name")).getText
+                getHomePageHeading = driver.findElement(By.cssSelector("#home")).getText
+
         _ = println(getHomePageHeading)
-        _ <- IO(getHomePageHeading shouldBe "Michael Yau")
+        _ <- IO(getHomePageHeading shouldBe "Home")
         aboutLink: WebElement = driver.findElement(By.id("about"))
         _ <- IO(aboutLink.click())
-        aboutPageH1: String = driver.findElement(By.cssSelector("#root > div > div > h1")).getText
+        aboutPageH1: String = driver.findElement(By.cssSelector("#root > div > div.flex-grow.container.mx-auto.p-5 > div > h1")).getText
         finalResult <- IO(aboutPageH1 shouldBe "About")
         _ <- IO.sleep(10.seconds)
       } yield {
@@ -66,12 +67,13 @@ object BlogHelloWordTest extends SimpleIOSuite {
     withWebDriver { driver =>
       for {
         _ <- IO(driver.get("http://localhost:3000/"))
-        getHomePageHeading = driver.findElement(By.id("landing-page-name")).getText
+                getHomePageHeading = driver.findElement(By.cssSelector("#home")).getText
+
         _ = println(getHomePageHeading)
-        _ <- IO(getHomePageHeading shouldBe "Michael Yau")
+        _ <- IO(getHomePageHeading shouldBe "Home")
         aboutLink: WebElement = driver.findElement(By.id("about"))
         _ <- IO(aboutLink.click())
-        aboutPageH1: String = driver.findElement(By.cssSelector("#root > div > div > h1")).getText
+        aboutPageH1: String = driver.findElement(By.cssSelector("#root > div > div.flex-grow.container.mx-auto.p-5 > div > h1")).getText
         finalResult <- IO(aboutPageH1 shouldBe "About")
         _ <- IO.sleep(10.seconds)
       } yield {
@@ -84,12 +86,13 @@ object BlogHelloWordTest extends SimpleIOSuite {
     withWebDriver { driver =>
       for {
         _ <- IO(driver.get("http://localhost:3000/"))
-        getHomePageHeading = driver.findElement(By.id("landing-page-name")).getText
+                getHomePageHeading = driver.findElement(By.cssSelector("#home")).getText
+
         _ = println(getHomePageHeading)
-        _ <- IO(getHomePageHeading shouldBe "Michael Yau")
+        _ <- IO(getHomePageHeading shouldBe "Home")
         aboutLink: WebElement = driver.findElement(By.id("about"))
         _ <- IO(aboutLink.click())
-        aboutPageH1: String = driver.findElement(By.cssSelector("#root > div > div > h1")).getText
+        aboutPageH1: String = driver.findElement(By.cssSelector("#root > div > div.flex-grow.container.mx-auto.p-5 > div > h1")).getText
         finalResult <- IO(aboutPageH1 shouldBe "About")
         _ <- IO.sleep(10.seconds)
       } yield {
@@ -102,12 +105,13 @@ object BlogHelloWordTest extends SimpleIOSuite {
     withWebDriver { driver =>
       for {
         _ <- IO(driver.get("http://localhost:3000/"))
-        getHomePageHeading = driver.findElement(By.id("landing-page-name")).getText
+                getHomePageHeading = driver.findElement(By.cssSelector("#home")).getText
+
         _ = println(getHomePageHeading)
-        _ <- IO(getHomePageHeading shouldBe "Michael Yau")
+        _ <- IO(getHomePageHeading shouldBe "Home")
         aboutLink: WebElement = driver.findElement(By.id("about"))
         _ <- IO(aboutLink.click())
-        aboutPageH1: String = driver.findElement(By.cssSelector("#root > div > div > h1")).getText
+        aboutPageH1: String = driver.findElement(By.cssSelector("#root > div > div.flex-grow.container.mx-auto.p-5 > div > h1")).getText
         finalResult <- IO(aboutPageH1 shouldBe "About")
         _ <- IO.sleep(10.seconds)
       } yield {
@@ -120,12 +124,13 @@ object BlogHelloWordTest extends SimpleIOSuite {
     withWebDriver { driver =>
       for {
         _ <- IO(driver.get("http://localhost:3000/"))
-        getHomePageHeading = driver.findElement(By.id("landing-page-name")).getText
+                getHomePageHeading = driver.findElement(By.cssSelector("#home")).getText
+
         _ = println(getHomePageHeading)
-        _ <- IO(getHomePageHeading shouldBe "Michael Yau")
+        _ <- IO(getHomePageHeading shouldBe "Home")
         aboutLink: WebElement = driver.findElement(By.id("about"))
         _ <- IO(aboutLink.click())
-        aboutPageH1: String = driver.findElement(By.cssSelector("#root > div > div > h1")).getText
+        aboutPageH1: String = driver.findElement(By.cssSelector("#root > div > div.flex-grow.container.mx-auto.p-5 > div > h1")).getText
         finalResult <- IO(aboutPageH1 shouldBe "About")
         _ <- IO.sleep(10.seconds)
       } yield {
@@ -138,12 +143,13 @@ object BlogHelloWordTest extends SimpleIOSuite {
     withWebDriver { driver =>
       for {
         _ <- IO(driver.get("http://localhost:3000/"))
-        getHomePageHeading = driver.findElement(By.id("landing-page-name")).getText
+                getHomePageHeading = driver.findElement(By.cssSelector("#home")).getText
+
         _ = println(getHomePageHeading)
-        _ <- IO(getHomePageHeading shouldBe "Michael Yau")
+        _ <- IO(getHomePageHeading shouldBe "Home")
         aboutLink: WebElement = driver.findElement(By.id("about"))
         _ <- IO(aboutLink.click())
-        aboutPageH1: String = driver.findElement(By.cssSelector("#root > div > div > h1")).getText
+        aboutPageH1: String = driver.findElement(By.cssSelector("#root > div > div.flex-grow.container.mx-auto.p-5 > div > h1")).getText
         finalResult <- IO(aboutPageH1 shouldBe "About")
         _ <- IO.sleep(10.seconds)
       } yield {
@@ -156,12 +162,13 @@ object BlogHelloWordTest extends SimpleIOSuite {
     withWebDriver { driver =>
       for {
         _ <- IO(driver.get("http://localhost:3000/"))
-        getHomePageHeading = driver.findElement(By.id("landing-page-name")).getText
+                getHomePageHeading = driver.findElement(By.cssSelector("#home")).getText
+
         _ = println(getHomePageHeading)
-        _ <- IO(getHomePageHeading shouldBe "Michael Yau")
+        _ <- IO(getHomePageHeading shouldBe "Home")
         aboutLink: WebElement = driver.findElement(By.id("about"))
         _ <- IO(aboutLink.click())
-        aboutPageH1: String = driver.findElement(By.cssSelector("#root > div > div > h1")).getText
+        aboutPageH1: String = driver.findElement(By.cssSelector("#root > div > div.flex-grow.container.mx-auto.p-5 > div > h1")).getText
         finalResult <- IO(aboutPageH1 shouldBe "About")
         _ <- IO.sleep(10.seconds)
       } yield {
@@ -174,12 +181,13 @@ object BlogHelloWordTest extends SimpleIOSuite {
     withWebDriver { driver =>
       for {
         _ <- IO(driver.get("http://localhost:3000/"))
-        getHomePageHeading = driver.findElement(By.id("landing-page-name")).getText
+                getHomePageHeading = driver.findElement(By.cssSelector("#home")).getText
+
         _ = println(getHomePageHeading)
-        _ <- IO(getHomePageHeading shouldBe "Michael Yau")
+        _ <- IO(getHomePageHeading shouldBe "Home")
         aboutLink: WebElement = driver.findElement(By.id("about"))
         _ <- IO(aboutLink.click())
-        aboutPageH1: String = driver.findElement(By.cssSelector("#root > div > div > h1")).getText
+        aboutPageH1: String = driver.findElement(By.cssSelector("#root > div > div.flex-grow.container.mx-auto.p-5 > div > h1")).getText
         finalResult <- IO(aboutPageH1 shouldBe "About")
         _ <- IO.sleep(10.seconds)
       } yield {
@@ -192,12 +200,13 @@ object BlogHelloWordTest extends SimpleIOSuite {
     withWebDriver { driver =>
       for {
         _ <- IO(driver.get("http://localhost:3000/"))
-        getHomePageHeading = driver.findElement(By.id("landing-page-name")).getText
+                getHomePageHeading = driver.findElement(By.cssSelector("#home")).getText
+
         _ = println(getHomePageHeading)
-        _ <- IO(getHomePageHeading shouldBe "Michael Yau")
+        _ <- IO(getHomePageHeading shouldBe "Home")
         aboutLink: WebElement = driver.findElement(By.id("about"))
         _ <- IO(aboutLink.click())
-        aboutPageH1: String = driver.findElement(By.cssSelector("#root > div > div > h1")).getText
+        aboutPageH1: String = driver.findElement(By.cssSelector("#root > div > div.flex-grow.container.mx-auto.p-5 > div > h1")).getText
         finalResult <- IO(aboutPageH1 shouldBe "About")
         _ <- IO.sleep(10.seconds)
       } yield {
