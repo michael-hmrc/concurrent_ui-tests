@@ -33,8 +33,8 @@ object BlogHelloWordTest extends SimpleIOSuite {
   test("When the user clicks the about link, they should be on the About page'") {
     withWebDriver { driver =>
       for {
-        _ <- IO(driver.get("http://192.168.1.106:3000/"))
-        //        _ <- IO(driver.get("http://localhost:3000/"))
+        ////        _ <- IO(driver.get("http://192.168.1.106:3000/"))
+        _ <- IO(driver.get("http://localhost:3000/"))
         getHomePageHeading = driver.findElement(By.cssSelector("#home")).getText
         _ = println(getHomePageHeading)
         _ <- IO(getHomePageHeading shouldBe "Home")
@@ -52,8 +52,8 @@ object BlogHelloWordTest extends SimpleIOSuite {
   test("When the user clicks the about link, they should be on the About page 2'") {
     withWebDriver { driver =>
       for {
-        _ <- IO(driver.get("http://192.168.1.106:3000/"))
-        //        _ <- IO(driver.get("http://localhost:3000/"))
+        //        _ <- IO(driver.get("http://192.168.1.106:3000/"))
+        _ <- IO(driver.get("http://localhost:3000/"))
         getHomePageHeading = driver.findElement(By.cssSelector("#home")).getText
 
         _ = println(getHomePageHeading)
@@ -72,8 +72,8 @@ object BlogHelloWordTest extends SimpleIOSuite {
   test("When the user clicks the about link, they should be on the About page 3'") {
     withWebDriver { driver =>
       for {
-        _ <- IO(driver.get("http://192.168.1.106:3000/"))
-        //        _ <- IO(driver.get("http://localhost:3000/"))
+        //        _ <- IO(driver.get("http://192.168.1.106:3000/"))
+        _ <- IO(driver.get("http://localhost:3000/"))
         getHomePageHeading = driver.findElement(By.cssSelector("#home")).getText
 
         _ = println(getHomePageHeading)
@@ -92,8 +92,8 @@ object BlogHelloWordTest extends SimpleIOSuite {
   test("When the user clicks the about link, they should be on the About page 4'") {
     withWebDriver { driver =>
       for {
-        _ <- IO(driver.get("http://192.168.1.106:3000/"))
-        //        _ <- IO(driver.get("http://localhost:3000/"))
+        //        _ <- IO(driver.get("http://192.168.1.106:3000/"))
+        _ <- IO(driver.get("http://localhost:3000/"))
         getHomePageHeading = driver.findElement(By.cssSelector("#home")).getText
 
         _ = println(getHomePageHeading)
@@ -112,8 +112,8 @@ object BlogHelloWordTest extends SimpleIOSuite {
   test("When the user clicks the about link, they should be on the About page 5'") {
     withWebDriver { driver =>
       for {
-        _ <- IO(driver.get("http://192.168.1.106:3000/"))
-        //        _ <- IO(driver.get("http://localhost:3000/"))
+        //        _ <- IO(driver.get("http://192.168.1.106:3000/"))
+        _ <- IO(driver.get("http://localhost:3000/"))
         getHomePageHeading = driver.findElement(By.cssSelector("#home")).getText
 
         _ = println(getHomePageHeading)
@@ -132,8 +132,8 @@ object BlogHelloWordTest extends SimpleIOSuite {
   test("When the user clicks the about link, they should be on the About page 6'") {
     withWebDriver { driver =>
       for {
-        _ <- IO(driver.get("http://192.168.1.106:3000/"))
-        //        _ <- IO(driver.get("http://localhost:3000/"))
+        //        _ <- IO(driver.get("http://192.168.1.106:3000/"))
+        _ <- IO(driver.get("http://localhost:3000/"))
         getHomePageHeading = driver.findElement(By.cssSelector("#home")).getText
 
         _ = println(getHomePageHeading)
@@ -152,8 +152,8 @@ object BlogHelloWordTest extends SimpleIOSuite {
   test("When the user clicks the about link, they should be on the About page 7'") {
     withWebDriver { driver =>
       for {
-        _ <- IO(driver.get("http://192.168.1.106:3000/"))
-        //        _ <- IO(driver.get("http://localhost:3000/"))
+        //        _ <- IO(driver.get("http://192.168.1.106:3000/"))
+        _ <- IO(driver.get("http://localhost:3000/"))
         getHomePageHeading = driver.findElement(By.cssSelector("#home")).getText
 
         _ = println(getHomePageHeading)
@@ -172,8 +172,8 @@ object BlogHelloWordTest extends SimpleIOSuite {
   test("When the user clicks the about link, they should be on the About page 8'") {
     withWebDriver { driver =>
       for {
-        _ <- IO(driver.get("http://192.168.1.106:3000/"))
-        //        _ <- IO(driver.get("http://localhost:3000/"))
+        //        _ <- IO(driver.get("http://192.168.1.106:3000/"))
+        _ <- IO(driver.get("http://localhost:3000/"))
         getHomePageHeading = driver.findElement(By.cssSelector("#home")).getText
 
         _ = println(getHomePageHeading)
@@ -192,8 +192,8 @@ object BlogHelloWordTest extends SimpleIOSuite {
   test("When the user clicks the about link, they should be on the About page 9'") {
     withWebDriver { driver =>
       for {
-        _ <- IO(driver.get("http://192.168.1.106:3000/"))
-        //        _ <- IO(driver.get("http://localhost:3000/"))
+        //        _ <- IO(driver.get("http://192.168.1.106:3000/"))
+        _ <- IO(driver.get("http://localhost:3000/"))
         getHomePageHeading = driver.findElement(By.cssSelector("#home")).getText
 
         _ = println(getHomePageHeading)
@@ -212,8 +212,8 @@ object BlogHelloWordTest extends SimpleIOSuite {
   test("When the user clicks the about link, they should be on the About page 10'") {
     withWebDriver { driver =>
       for {
-        _ <- IO(driver.get("http://192.168.1.106:3000/"))
-        //        _ <- IO(driver.get("http://localhost:3000/"))
+        //        _ <- IO(driver.get("http://192.168.1.106:3000/"))
+        _ <- IO(driver.get("http://localhost:3000/"))
         getHomePageHeading = driver.findElement(By.cssSelector("#home")).getText
 
         _ = println(getHomePageHeading)
