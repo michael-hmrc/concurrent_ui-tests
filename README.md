@@ -53,6 +53,10 @@ Github actions runs the tests on every commit pushed to Github.
 
 ## Running the app
 
+Clone the repo and run the commands for the desired servers:
+
+### [--> My React Blog :)](https://github.com/mywyau/blog)
+
 ### Start the proxy server and proxy/test app
 ```
 npm run proxy
@@ -63,7 +67,6 @@ npm run proxy
 ```
 http://localhost:6060
 ```
-
 
 ### Start the app
 ```
