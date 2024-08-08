@@ -52,7 +52,7 @@ object AssetNavBarTest extends SimpleIOSuite {
       case _ => "http://localhost:6060"
     }
 
-  test("When the user clicks the Assets link, they should be on the Assets page'") {
+  test("When the user navigates to the Images page, they should be on the Images page'") {
     withWebDriver { driver =>
 
       def navToAssets(webDiver: WebDriver): IO[WebDriver] =
