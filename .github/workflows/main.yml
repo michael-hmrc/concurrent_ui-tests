@@ -68,7 +68,7 @@ jobs:
 
       - name: Run browser tests
         run: |
-          sbt test
+          sbt -Denvironment=local -Dheadless=true test
 
       - name: Clean up
         run: |
