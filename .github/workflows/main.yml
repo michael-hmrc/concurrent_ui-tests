@@ -26,7 +26,7 @@ jobs:
 
       - name: Run Docker container
         run: |
-          docker run -d -p 3000:3000 --name proxy-server my-blog-proxy
+          docker run -d -p 6060:6060 --name proxy-server my-blog-proxy
 
       - name: Wait for localhost server to be ready
         run: |
