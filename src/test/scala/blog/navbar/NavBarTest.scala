@@ -1,59 +1,15 @@
 package blog.navbar
 
-import blog.BrowserModeConfiguration.headlessOrNonHeadless
 import blog.EnvironmentConfiguration.environment
 import blog._
 import cats.effect._
 import org.openqa.selenium._
-import org.openqa.selenium.chrome.{ChromeDriver, ChromeOptions}
-import org.openqa.selenium.support.ui.WebDriverWait
 import org.scalatest.matchers.should.Matchers.convertToAnyShouldWrapper
 import weaver._
 
-import java.time.Duration.{ofMillis, ofSeconds}
-import scala.concurrent.duration.DurationInt
-
-object NavBarTest extends SimpleIOSuite {
+object NavBarTest extends SimpleIOSuite with BaseSpec {
 
   override def maxParallelism = 3
-
-  val sleepTime = 10.seconds
-
-  val configReader: ConfigReader[IO] = ConfigReader[IO]
-
-  def wait(driver: WebDriver): WebDriverWait = new WebDriverWait(driver, ofSeconds(20), ofMillis(500))
-
-  def withWebDriver[A](test: WebDriver => IO[A]): IO[A] = {
-    val options = new ChromeOptions()
-    val acquire: IO[WebDriver] = {
-      for {
-        driverProperty <- configReader.loadChromedriverConfig.map(_.chromedriver.path.driver)
-        driverLocationPath <- environment() match {
-          case Local => configReader.loadChromedriverConfig.map(_.chromedriver.path.local)
-          case _ => configReader.loadChromedriverConfig.map(_.chromedriver.path.nix)
-        }
-        _ <- IO(System.setProperty(driverProperty, driverLocationPath))
-        configOptions <- configReader.loadChromedriverConfig.map(config => config.chromedriver.options)
-        _ <- IO(configOptions.map(options.addArguments(_)))
-        _ <- headlessOrNonHeadless() match {
-          case Headless => IO(options.addArguments("--headless"))
-          case NonHeadless => IO.unit
-        }
-      } yield {
-        new ChromeDriver(options)
-      }
-    }
-
-    def release(driver: WebDriver): IO[Unit] = IO(driver.quit())
-
-    Resource.make(acquire)(release).use(test)
-  }
-
-  val baseUrl =
-    environment() match {
-      case Local => "http://localhost:3000"
-      case _ => "http://localhost:6060"
-    }
 
   test("When the user clicks the About link, they should be on the About page'") {
     withWebDriver { driver =>
@@ -65,7 +21,6 @@ object NavBarTest extends SimpleIOSuite {
         _ <- IO(aboutLink.click())
         aboutPageH1: String = driver.findElement(By.cssSelector("#root > div > div.flex-grow.container.mx-auto.p-5 > div > h1")).getText
         _ <- IO(aboutPageH1 shouldBe "About")
-        _ <- IO.sleep(sleepTime)
       } yield {
         expect(aboutPageH1 == "About")
       }
@@ -82,7 +37,6 @@ object NavBarTest extends SimpleIOSuite {
         contactLink: WebElement = driver.findElement(By.id("contact"))
         _ <- IO(contactLink.click())
         contactPageH1: String = driver.findElement(By.cssSelector("#root > div > div > h1")).getText
-        _ <- IO.sleep(sleepTime)
       } yield {
         expect(contactPageH1 == "Contact Details")
       }
@@ -98,7 +52,6 @@ object NavBarTest extends SimpleIOSuite {
         interestsLink: WebElement = driver.findElement(By.id("interests"))
         _ <- IO(interestsLink.click())
         interestsPageH1: String = driver.findElement(By.cssSelector("#root > div > div.flex-grow.container.mx-auto.pt-4 > div > h1")).getText
-        _ <- IO.sleep(sleepTime)
       } yield {
         expect(interestsPageH1 == "Interests")
       }
@@ -114,7 +67,6 @@ object NavBarTest extends SimpleIOSuite {
         skillsLink: WebElement = driver.findElement(By.id("skills"))
         _ <- IO(skillsLink.click())
         skillsPageH1: String = driver.findElement(By.cssSelector("#root > div > div.flex-grow.container.mx-auto.pt-4 > h1")).getText
-        _ <- IO.sleep(sleepTime)
       } yield {
         expect(skillsPageH1 == "Skills")
       }
@@ -130,7 +82,6 @@ object NavBarTest extends SimpleIOSuite {
         workLogLink: WebElement = driver.findElement(By.id("work-log"))
         _ <- IO(workLogLink.click())
         workLogPageH1: String = driver.findElement(By.cssSelector("#root > div > div.container.mx-auto.p-4 > h1")).getText
-        _ <- IO.sleep(sleepTime)
       } yield {
         expect(workLogPageH1 == "Work Log")
       }
@@ -150,7 +101,6 @@ object NavBarTest extends SimpleIOSuite {
             driver.findElement(By.cssSelector("#root > div > div > h1")).isDisplayed
           })
         assetsPageH1: String = driver.findElement(By.cssSelector("#root > div > div > h1")).getText
-        _ <- IO.sleep(sleepTime)
       } yield {
         expect(assetsPageH1 == "Assets")
       }

@@ -1,5 +1,7 @@
 package blog.configuration
 
+import blog.configuration.models.{AuthMethod, EnvironmentConfig}
+
 case class AppConfig(
                       proxy: ProxyConfig,
                       local: EnvironmentConfig,

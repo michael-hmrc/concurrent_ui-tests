@@ -1,3 +1,5 @@
+package old_stuff.hello_world
+
 //import cats.effect._
 //import cats.implicits._
 //import org.openqa.selenium.WebDriver

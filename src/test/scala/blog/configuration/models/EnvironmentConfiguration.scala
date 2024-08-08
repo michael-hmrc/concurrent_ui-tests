@@ -7,6 +7,8 @@ sealed trait Environment
 
 case object Local extends Environment
 
+case object GithubActions extends Environment
+
 case object ProxyEnv extends Environment
 
 case object QA extends Environment
@@ -25,6 +27,7 @@ object EnvironmentConfiguration {
       case Left(e) => throw new RuntimeException(s"[EnvironmentConfiguration][environment] $e is not a valid Env")
       case Right(s) if s.toLowerCase == "local" => Local
       case Right(s) if s.toLowerCase == "proxy" => ProxyEnv
+      case Right(s) if s.toLowerCase == "githubactions" => GithubActions
       case Right(s) if s.toLowerCase == "qa" => QA
       case Right(s) if s.toLowerCase == "staging" => Staging
       case Right(s) if s.toLowerCase == "production" => Production

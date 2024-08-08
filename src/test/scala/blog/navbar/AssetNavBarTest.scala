@@ -12,65 +12,29 @@ import weaver._
 
 import java.time.Duration.{ofMillis, ofSeconds}
 
-object AssetNavBarTest extends SimpleIOSuite {
+object AssetNavBarTest extends SimpleIOSuite with BaseSpec {
 
   override def maxParallelism = 1
 
-  val configReader: ConfigReader[IO] = ConfigReader[IO]
-
-  def wait(driver: WebDriver): WebDriverWait = new WebDriverWait(driver, ofSeconds(20), ofMillis(500))
-
-  def withWebDriver[A](test: WebDriver => IO[A]): IO[A] = {
-    val options = new ChromeOptions()
-    val acquire: IO[WebDriver] = {
-      for {
-        driverProperty <- configReader.loadChromedriverConfig.map(_.chromedriver.path.driver)
-        driverLocationPath <- environment() match {
-          case Local => configReader.loadChromedriverConfig.map(_.chromedriver.path.local)
-          case _ => configReader.loadChromedriverConfig.map(_.chromedriver.path.nix)
-        }
-        _ <- IO(System.setProperty(driverProperty, driverLocationPath))
-        configOptions <- configReader.loadChromedriverConfig.map(config => config.chromedriver.options)
-        _ <- IO(configOptions.map(options.addArguments(_)))
-        _ <- headlessOrNonHeadless() match {
-          case Headless => IO(options.addArguments("--headless"))
-          case NonHeadless => IO.unit
-        }
-      } yield {
-        new ChromeDriver(options)
-      }
-    }
-
-    def release(driver: WebDriver): IO[Unit] = IO(driver.quit())
-
-    Resource.make(acquire)(release).use(test)
-  }
-
-  val baseUrl =
-    environment() match {
-      case Local => "http://localhost:3000"
-      case _ => "http://localhost:6060"
+  def navToAssets(webDiver: WebDriver): IO[WebDriver] =
+    for {
+      _ <- IO(webDiver.get(baseUrl + "/"))
+      getHomePageHeading = webDiver.findElement(By.cssSelector("#home")).getText
+      _ <- IO(getHomePageHeading shouldBe "Home")
+      assetsLink: WebElement = webDiver.findElement(By.id("assets"))
+      _ <- IO(assetsLink.click())
+      _ <-
+        IO(wait(webDiver).until { driver =>
+          driver.findElement(By.cssSelector("#root > div > div > h1")).isDisplayed
+        })
+      assetsPageH1 <- IO(webDiver.findElement(By.cssSelector("#root > div > div > h1")).getText)
+      _ = assetsPageH1 shouldBe "Assets"
+    } yield {
+      webDiver
     }
 
   test("When the user navigates to the Images page, they should be on the Images page'") {
     withWebDriver { driver =>
-
-      def navToAssets(webDiver: WebDriver): IO[WebDriver] =
-        for {
-          _ <- IO(webDiver.get(baseUrl + "/"))
-          getHomePageHeading = webDiver.findElement(By.cssSelector("#home")).getText
-          _ <- IO(getHomePageHeading shouldBe "Home")
-          assetsLink: WebElement = webDiver.findElement(By.id("assets"))
-          _ <- IO(assetsLink.click())
-          _ <-
-            IO(wait(webDiver).until { driver =>
-              webDiver.findElement(By.cssSelector("#root > div > div > h1")).isDisplayed
-            })
-          assetsPageH1 <- IO(webDiver.findElement(By.cssSelector("#root > div > div > h1")).getText)
-          _ = assetsPageH1 shouldBe "Assets"
-        } yield {
-          webDiver
-        }
 
       def buttonSteps(webDiver: WebDriver) = {
         for {
@@ -94,7 +58,6 @@ object AssetNavBarTest extends SimpleIOSuite {
           imagesPageH1
         }
       }
-
 
       for {
         webDriver1 <- navToAssets(driver)

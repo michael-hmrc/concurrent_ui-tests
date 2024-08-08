@@ -1,6 +1,6 @@
-package blog
+package blog.navbar
 
-trait Urls {
+trait NavBarUrls {
 
   val devBaseUrl = "http://localhost:3000"
   val homePage = devBaseUrl + "/"

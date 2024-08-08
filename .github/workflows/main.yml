@@ -22,18 +22,18 @@ jobs:
       - name: Build Docker image
         run: |
           cd my-blog
-          docker build -t my-blog-app .
+          docker build -t my-blog-proxy .
 
       - name: Run Docker container
         run: |
-          docker run -d -p 3000:3000 --name localhost-server my-blog-app
+          docker run -d -p 6060:6060 --name proxy-server my-blog-proxy
 
       - name: Wait for localhost server to be ready
         run: |
           sleep 5  # Wait for the container to be fully ready
 
       - name: Verify localhost server is running
-        run: curl -I http://localhost:3000
+        run: curl -I http://localhost:6060
 
       - name: Checkout selenium tests repository
         uses: actions/checkout@v2
@@ -71,11 +71,11 @@ jobs:
       - name: Run browser tests
         run: |
           . /home/runner/.nix-profile/etc/profile.d/nix.sh
-          sbt -Denvironment=local -Dheadless=true test
+          sbt -Denvironment=githubActions -Dheadless=true test
 
       - name: Clean up
         run: |
-          docker stop localhost-server
-          docker rm localhost-server
-          docker rmi my-blog-app
+          docker stop proxy-server
+          docker rm proxy-server
+          docker rmi my-blog-proxy
           rm -rf my-blog || true
