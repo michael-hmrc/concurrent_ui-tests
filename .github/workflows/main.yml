@@ -1,0 +1,81 @@
+name: CI Pipeline
+
+on: [push]
+
+jobs:
+  selenium-tests:
+    runs-on: ubuntu-latest
+
+    services:
+      selenium:
+        image: selenium/standalone-chrome:latest
+        ports:
+          - 4444:4444
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          repository: mywyau/blog
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build Docker image
+        run: |
+          cd my-blog
+          docker build -t my-blog-app .
+
+      - name: Run Docker container
+        run: |
+          docker run -d -p 3000:3000 --name localhost-server my-blog-app
+
+      - name: Wait for localhost server to be ready
+        run: |
+          sleep 5  # Wait for the container to be fully ready
+
+      - name: Verify localhost server is running
+        run: curl -I http://localhost:3000
+
+      - name: Checkout selenium tests repository
+        uses: actions/checkout@v2
+        with:
+          repository: mywyau/concurrent_ui-tests
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install Nix
+        run: |
+          curl -L https://nixos.org/nix/install | sh
+          . /home/runner/.nix-profile/etc/profile.d/nix.sh
+          nix-env --version
+
+      - name: Set up Nix shell
+        run: |
+          . /home/runner/.nix-profile/etc/profile.d/nix.sh
+          nix-shell --run "echo 'Running inside Nix shell!'"
+
+      - name: Install chromedriver via Nix
+        run: |
+          . /home/runner/.nix-profile/etc/profile.d/nix.sh
+          nix-env -iA nixpkgs.chromedriver
+
+      - name: Set up PATH for chromedriver
+        run: |
+          echo "/home/runner/.nix-profile/bin" >> $GITHUB_PATH
+          . /home/runner/.nix-profile/etc/profile.d/nix.sh
+          which chromedriver
+
+      - name: Install dependencies for Selenium tests
+        run: |
+          . /home/runner/.nix-profile/etc/profile.d/nix.sh
+          sbt compile
+
+      - name: Run browser tests
+        run: |
+          . /home/runner/.nix-profile/etc/profile.d/nix.sh
+          sbt -Denvironment=local -Dheadless=true test
+
+      - name: Clean up
+        run: |
+          docker stop localhost-server
+          docker rm localhost-server
+          docker rmi my-blog-app
+          rm -rf my-blog || true
