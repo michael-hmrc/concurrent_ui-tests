@@ -1,22 +1,36 @@
 # concurrent_ui-tests
 
-Testing and writing example Selenium tests using Weaver tests and Scalatest
+### This repo is for UI/Acceptance tests for my React Blog  
 
+### And
 
-## To run the tests
+### Testing and writing example Selenium tests using Weaver tests and Scalatest
+
+## To run all the tests and configure headless/non-headless and environment
 
 ```
-sbt test
+sbt -Denvironment=local -Dheadless=true test
+```
+
+## To run a single test spec
+
+```
+sbt -Denvironment=local -Dheadless=true "testOnly *NavBarSpec*"
 ```
 
 or run the shell scripts
 
-### Scalatest
+### All tests for the React Blog
+```bash
+./run_blog_tests.sh
+```
+
+### Scalatest (Not working)  -- tests currently commented out
 ```bash
 ./run_normal_tests.sh
 ```
 
-### Weaver tests
+### Weaver tests (Not working)  -- tests currently commented out
 ```bash
 ./run_weaver_tests.sh
 ```
@@ -32,3 +46,36 @@ I already had Nix installed so can utilise Nix for a temporary nix shell to set 
 ```bash
 nix-shell
 ```
+
+## Github actions 
+Github actions runs the tests on every commit pushed to Github.
+
+
+## Running the app
+
+### Start the proxy server and proxy/test app
+```
+npm run proxy
+```
+
+### Proxy server host and port 
+
+```
+http://localhost:6060
+```
+
+
+### Start the app
+```
+npm start
+```
+
+### Localhost server host and port for actual app
+
+```
+http://localhost:3000
+```
+
+
+
+
