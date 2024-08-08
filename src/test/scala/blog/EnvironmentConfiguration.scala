@@ -7,7 +7,7 @@ sealed trait Environment
 
 case object Local extends Environment
 
-case object Proxy extends Environment
+case object ProxyEnv extends Environment
 
 case object QA extends Environment
 
@@ -24,7 +24,7 @@ object EnvironmentConfiguration {
     environmentProperty match {
       case Left(e) => throw new RuntimeException(s"[EnvironmentConfiguration][environment] $e is not a valid Env")
       case Right(s) if s.toLowerCase == "local" => Local
-      case Right(s) if s.toLowerCase == "proxy" => Proxy
+      case Right(s) if s.toLowerCase == "proxy" => ProxyEnv
       case Right(s) if s.toLowerCase == "qa" => QA
       case Right(s) if s.toLowerCase == "staging" => Staging
       case Right(s) if s.toLowerCase == "production" => Production
