@@ -1,8 +1,9 @@
-package blog
+package blog.configuration
 
 // src/test/scala/AppConfigSpec.scala
 
-import blog.configuration.PathConfig
+import blog.ConfigReader
+import blog.configuration.models.PathConfig
 import cats.effect.IO
 import weaver.SimpleIOSuite
 

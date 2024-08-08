@@ -1,8 +1,4 @@
-package blog.configuration
-
-case class ProxyConfig(host: String, port: Int)
-
-case class EnvironmentConfig(host: String, port: Int)
+package blog.configuration.models
 
 case class AuthMethod(
                        authType: String,
@@ -10,7 +6,3 @@ case class AuthMethod(
                        username: Option[String],
                        password: Option[String]
                      )
-
-
-
-

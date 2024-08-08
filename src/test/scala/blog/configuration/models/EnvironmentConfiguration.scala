@@ -7,6 +7,8 @@ sealed trait Environment
 
 case object Local extends Environment
 
+case object GithubActions extends Environment
+
 case object ProxyEnv extends Environment
 
 case object QA extends Environment

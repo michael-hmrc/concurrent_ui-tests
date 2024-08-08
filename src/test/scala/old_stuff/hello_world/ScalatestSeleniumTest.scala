@@ -1,3 +1,5 @@
+package old_stuff.hello_world
+
 //import org.openqa.selenium.WebDriver
 //import org.openqa.selenium.chrome.{ChromeDriver, ChromeOptions}
 //import org.scalatest.funsuite.AnyFunSuite

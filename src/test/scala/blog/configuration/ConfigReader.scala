@@ -2,7 +2,8 @@ package blog
 
 // src/test/scala/ConfigReader.scala
 
-import blog.configuration.{AppConfig, ChromeDriverConfiguration}
+import blog.configuration.AppConfig
+import blog.configuration.models.ChromeDriverConfiguration
 import cats.effect.Sync
 import pureconfig.ConfigSource
 import pureconfig.generic.auto._
