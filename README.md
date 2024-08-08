@@ -25,12 +25,12 @@ or run the shell scripts
 ./run_blog_tests.sh
 ```
 
-### Scalatest
+### Scalatest (Not working)  -- tests currently commented out
 ```bash
 ./run_normal_tests.sh
 ```
 
-### Weaver tests
+### Weaver tests (Not working)  -- tests currently commented out
 ```bash
 ./run_weaver_tests.sh
 ```
