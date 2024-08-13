@@ -33,7 +33,7 @@ trait BaseSpec {
 
   val baseUrl =
     environment() match {
-      case GithubActions => "http://localhost:6060"
+      case ProxyEnv => "http://localhost:6060"
       case _ => "http://localhost:3000"
     }
 

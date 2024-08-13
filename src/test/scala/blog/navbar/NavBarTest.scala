@@ -1,6 +1,5 @@
 package blog.navbar
 
-import blog.EnvironmentConfiguration.environment
 import blog._
 import cats.effect._
 import org.openqa.selenium._

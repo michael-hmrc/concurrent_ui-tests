@@ -1,16 +1,10 @@
 package blog.navbar
 
-import blog.BrowserModeConfiguration.headlessOrNonHeadless
-import blog.EnvironmentConfiguration.environment
 import blog._
 import cats.effect._
 import org.openqa.selenium._
-import org.openqa.selenium.chrome.{ChromeDriver, ChromeOptions}
-import org.openqa.selenium.support.ui.WebDriverWait
 import org.scalatest.matchers.should.Matchers.convertToAnyShouldWrapper
 import weaver._
-
-import java.time.Duration.{ofMillis, ofSeconds}
 
 object AssetNavBarTest extends SimpleIOSuite with BaseSpec {
 
