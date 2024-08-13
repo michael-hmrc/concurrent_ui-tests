@@ -43,6 +43,7 @@ object CreatePostTest extends SimpleIOSuite with BaseSpec {
             driver.findElement(By.cssSelector("#root > div > main > div > ul > li:nth-child(1) > div > a")).isDisplayed
           })
           clickBlogPost1ReadMeLink <- IO(webDriver.findElement(By.cssSelector("#root > div > main > div > ul > li:nth-child(1) > div > a")).click())
+          refresh <- IO(webDriver.navigate().refresh())
           updatedTitle = webDriver.findElement(By.cssSelector("#root > div > main > div > div:nth-child(1) > div > h1")).getText
           _ = updatedTitle shouldBe "Hardcoded title update"
           post_id_content = webDriver.findElement(By.cssSelector("#root > div > main > div > div:nth-child(1) > div > p:nth-child(3)")).getText
