@@ -20,7 +20,8 @@ trait BaseSpec {
 
   val chromedriverPath: IO[String] =
     environment() match {
-      case GithubActions => configReader.loadChromedriverConfig.map(_.chromedriver.path.nix)
+      case GithubActions => configReader.loadChromedriverConfig.map(_.chromedriver.path.github)
+      case _ => configReader.loadChromedriverConfig.map(_.chromedriver.path.local)
       case _ => configReader.loadChromedriverConfig.map(_.chromedriver.path.local)
     }
 
