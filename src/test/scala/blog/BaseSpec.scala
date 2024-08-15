@@ -5,10 +5,12 @@ import blog.EnvironmentConfiguration.environment
 import cats.effect.{IO, Resource}
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.chrome.{ChromeDriver, ChromeOptions}
+import org.openqa.selenium.remote.RemoteWebDriver
 import org.openqa.selenium.support.ui.WebDriverWait
 
 import java.time.Duration.{ofMillis, ofSeconds}
 import scala.concurrent.duration.{DurationInt, FiniteDuration}
+import scala.sys.process.processInternal.URL
 
 trait BaseSpec {
 
@@ -53,7 +55,10 @@ trait BaseSpec {
         _ <- IO(configOptions.map(chromeOptions.addArguments(_)))
         _ <- headlessMode(chromeOptions)
       } yield {
-        new ChromeDriver(chromeOptions)
+        environment() match {
+          case GithubActions => new RemoteWebDriver(new URL("http://selenium:4444/wd/hub"), chromeOptions)
+          case _ => new ChromeDriver(chromeOptions)
+        }
       }
     }
 
