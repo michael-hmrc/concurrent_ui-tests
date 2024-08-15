@@ -7,14 +7,15 @@ import org.openqa.selenium.WebDriver
 import org.openqa.selenium.chrome.{ChromeDriver, ChromeOptions}
 import org.openqa.selenium.remote.RemoteWebDriver
 import org.openqa.selenium.support.ui.WebDriverWait
+import org.scalatest.matchers.should.Matchers
 
 import java.net.URL
 import java.time.Duration.{ofMillis, ofSeconds}
 import scala.concurrent.duration.{DurationInt, FiniteDuration}
 
-trait BaseSpec {
+trait BaseSpec extends Matchers {
 
-  val sleepTime: FiniteDuration = 1.seconds
+  val sleepTime: FiniteDuration = 10.seconds
 
   val configReader: ConfigReader[IO] = ConfigReader[IO]
 
@@ -33,13 +34,6 @@ trait BaseSpec {
       case NonHeadless => IO.unit
     }
   }
-
-  val baseUrl =
-    environment() match {
-      case ProxyEnv => "http://localhost:6060"
-      case GithubActions => "http://frontend:3000"
-      case _ => "http://localhost:3000"
-    }
 
   def withWebDriver[A](test: WebDriver => IO[A]): IO[A] = {
     val chromeOptions = new ChromeOptions()

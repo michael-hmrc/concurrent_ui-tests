@@ -1,9 +1,9 @@
 package blog.navbar
 
+import blog.PageUrls.homePageUrl
 import blog._
 import cats.effect._
 import org.openqa.selenium._
-import org.scalatest.matchers.should.Matchers.convertToAnyShouldWrapper
 import weaver._
 
 object AssetNavBarTest extends SimpleIOSuite with BaseSpec {
@@ -12,7 +12,7 @@ object AssetNavBarTest extends SimpleIOSuite with BaseSpec {
 
   def navToAssets(webDiver: WebDriver): IO[WebDriver] =
     for {
-      _ <- IO(webDiver.get(baseUrl + "/"))
+      _ <- IO(webDiver.get(homePageUrl))
       getHomePageHeading = webDiver.findElement(By.cssSelector("#home")).getText
       _ <- IO(getHomePageHeading shouldBe "Home")
       assetsLink: WebElement = webDiver.findElement(By.id("assets"))
@@ -27,31 +27,31 @@ object AssetNavBarTest extends SimpleIOSuite with BaseSpec {
       webDiver
     }
 
+  def buttonSteps(webDiver: WebDriver) = {
+    for {
+      buttonLink <- IO(webDiver.findElement(By.id("buttons")))
+      _ <- IO(buttonLink.click())
+      buttonPageH1 <- IO(webDiver.findElement(By.cssSelector("#root > div > div > h1")).getText)
+      _ = buttonPageH1 shouldBe "Buttons"
+      gradientLightUpButton <- IO(webDiver.findElement(By.cssSelector("#root > div > div > div > div:nth-child(4) > button")))
+      _ = gradientLightUpButton.getText shouldBe "Gradient with Light up Button"
+    } yield {
+      webDiver
+    }
+  }
+
+  def imagesSteps(webDiver: WebDriver): IO[String] = {
+    for {
+      imagesLink <- IO(webDiver.findElement(By.id("images")))
+      _ <- IO(imagesLink.click())
+      imagesPageH1 <- IO(webDiver.findElement(By.cssSelector("#root > div > div > h1")).getText)
+    } yield {
+      imagesPageH1
+    }
+  }
+
   test("When the user navigates to the Images page, they should be on the Images page'") {
     withWebDriver { driver =>
-
-      def buttonSteps(webDiver: WebDriver) = {
-        for {
-          buttonLink <- IO(webDiver.findElement(By.id("buttons")))
-          _ <- IO(buttonLink.click())
-          buttonPageH1 <- IO(webDiver.findElement(By.cssSelector("#root > div > div > h1")).getText)
-          _ = buttonPageH1 shouldBe "Buttons"
-          gradientLightUpButton <- IO(webDiver.findElement(By.cssSelector("#root > div > div > div > div:nth-child(4) > button")))
-          _ = gradientLightUpButton.getText shouldBe "Gradient with Light up Button"
-        } yield {
-          webDiver
-        }
-      }
-
-      def imagesSteps(webDiver: WebDriver): IO[String] = {
-        for {
-          imagesLink <- IO(webDiver.findElement(By.id("images")))
-          _ <- IO(imagesLink.click())
-          imagesPageH1 <- IO(webDiver.findElement(By.cssSelector("#root > div > div > h1")).getText)
-        } yield {
-          imagesPageH1
-        }
-      }
 
       for {
         webDriver1 <- navToAssets(driver)

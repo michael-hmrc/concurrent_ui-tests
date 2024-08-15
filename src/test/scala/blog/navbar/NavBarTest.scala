@@ -1,9 +1,9 @@
 package blog.navbar
 
+import blog.PageUrls.homePageUrl
 import blog._
 import cats.effect._
 import org.openqa.selenium._
-import org.scalatest.matchers.should.Matchers.convertToAnyShouldWrapper
 import weaver._
 
 object NavBarTest extends SimpleIOSuite with BaseSpec {
@@ -13,7 +13,7 @@ object NavBarTest extends SimpleIOSuite with BaseSpec {
   test("When the user clicks the About link, they should be on the About page'") {
     withWebDriver { driver =>
       for {
-        _ <- IO(driver.get(baseUrl + "/"))
+        _ <- IO(driver.get(homePageUrl))
         getHomePageHeading = driver.findElement(By.cssSelector("#home")).getText
         _ <- IO(getHomePageHeading shouldBe "Home")
         aboutLink: WebElement = driver.findElement(By.id("about"))
@@ -30,7 +30,7 @@ object NavBarTest extends SimpleIOSuite with BaseSpec {
     withWebDriver { driver =>
 
       for {
-        _ <- IO(driver.get(baseUrl + "/"))
+        _ <- IO(driver.get(homePageUrl))
         getHomePageHeading = driver.findElement(By.cssSelector("#home")).getText
         _ <- IO(getHomePageHeading shouldBe "Home")
         contactLink: WebElement = driver.findElement(By.id("contact"))
@@ -45,7 +45,7 @@ object NavBarTest extends SimpleIOSuite with BaseSpec {
   test("When the user clicks the Interests link, they should be on the Interests page'") {
     withWebDriver { driver =>
       for {
-        _ <- IO(driver.get(baseUrl + "/"))
+        _ <- IO(driver.get(homePageUrl))
         getHomePageHeading = driver.findElement(By.cssSelector("#home")).getText
         _ <- IO(getHomePageHeading shouldBe "Home")
         interestsLink: WebElement = driver.findElement(By.id("interests"))
@@ -60,7 +60,7 @@ object NavBarTest extends SimpleIOSuite with BaseSpec {
   test("When the user clicks the Skills link, they should be on the Skills page'") {
     withWebDriver { driver =>
       for {
-        _ <- IO(driver.get(baseUrl + "/"))
+        _ <- IO(driver.get(homePageUrl))
         getHomePageHeading = driver.findElement(By.cssSelector("#home")).getText
         _ <- IO(getHomePageHeading shouldBe "Home")
         skillsLink: WebElement = driver.findElement(By.id("skills"))
@@ -75,7 +75,7 @@ object NavBarTest extends SimpleIOSuite with BaseSpec {
   test("When the user clicks the WorkLog link, they should be on the Work Log page'") {
     withWebDriver { driver =>
       for {
-        _ <- IO(driver.get(baseUrl + "/"))
+        _ <- IO(driver.get(homePageUrl))
         getHomePageHeading = driver.findElement(By.cssSelector("#home")).getText
         _ <- IO(getHomePageHeading shouldBe "Home")
         workLogLink: WebElement = driver.findElement(By.id("work-log"))
@@ -90,7 +90,7 @@ object NavBarTest extends SimpleIOSuite with BaseSpec {
   test("When the user clicks the Assets link, they should be on the Assets page'") {
     withWebDriver { driver =>
       for {
-        _ <- IO(driver.get(baseUrl + "/"))
+        _ <- IO(driver.get(homePageUrl))
         getHomePageHeading = driver.findElement(By.cssSelector("#home")).getText
         _ <- IO(getHomePageHeading shouldBe "Home")
         assetsLink: WebElement = driver.findElement(By.id("assets"))
