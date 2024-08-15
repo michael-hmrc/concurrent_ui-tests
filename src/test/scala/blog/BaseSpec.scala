@@ -45,7 +45,10 @@ trait BaseSpec {
       for {
         driverProperty <- configReader.loadChromedriverConfig.map(_.chromedriver.path.driver)
         driverLocationPath <- chromedriverPath
-        _ <- IO(System.setProperty(driverProperty, driverLocationPath))
+        _ <- environment() match {
+          case GithubActions => IO.unit
+          case _ => IO(System.setProperty(driverProperty, driverLocationPath))
+        }
         configOptions <- configReader.loadChromedriverConfig.map(config => config.chromedriver.options)
         _ <- IO(configOptions.map(chromeOptions.addArguments(_)))
         _ <- headlessMode(chromeOptions)
