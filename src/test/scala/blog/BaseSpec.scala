@@ -8,9 +8,9 @@ import org.openqa.selenium.chrome.{ChromeDriver, ChromeOptions}
 import org.openqa.selenium.remote.RemoteWebDriver
 import org.openqa.selenium.support.ui.WebDriverWait
 
+import java.net.URL
 import java.time.Duration.{ofMillis, ofSeconds}
 import scala.concurrent.duration.{DurationInt, FiniteDuration}
-import scala.sys.process.processInternal.URL
 
 trait BaseSpec {
 
