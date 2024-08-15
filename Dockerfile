@@ -11,4 +11,4 @@ COPY . .
 RUN sbt update
 
 # Default command to run your tests
-CMD ["sbt", "-Denvironment=githubActions", "-Dheadless=true", "test"]
+#CMD ["sbt", "-Denvironment=githubActions", "-Dheadless=true", "test"]
