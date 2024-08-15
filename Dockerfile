@@ -1,5 +1,5 @@
 # Use an OpenJDK image with sbt pre-installed
-FROM hseeberger/scala-sbt:11.0.16_8u345-b01_1.7.2_2.13.10
+FROM hseeberger/scala-sbt:latest
 
 # Set the working directory inside the container
 WORKDIR /app
