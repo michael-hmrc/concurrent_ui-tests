@@ -2,7 +2,7 @@ package blog.crud_blog_posts
 
 trait Selectors {
 
-  val firstBlogPostReadMeLink = "#read-more-1"
+  val firstBlogPostReadMeLink = "#read-more-mikey-1"
 
 //  val updatedBlogPostH1 = "#root > div > main > div > div:nth-child(1) > div > div.mt-4 > h1"
   val updatedBlogPostH1 = "#post-title"
