@@ -40,13 +40,16 @@ trait SharedUserSteps extends BaseSpec with Selectors {
         driver.findElement(By.cssSelector(firstBlogPostReadMeLink)).isDisplayed
       })
       _ <- IO(webDriver.findElement(By.cssSelector(firstBlogPostReadMeLink)).click())
-      _ <- IO(webDriver.navigate().refresh())
-      updatedTitle = webDriver.findElement(By.cssSelector(updatedBlogPostH1)).getText
+      _ <- IO(wait(webDriver).until { driver =>
+        driver.findElement(By.cssSelector(updatedBlogPostH1)).isDisplayed
+      })
+      updatedTitle <- IO(webDriver.findElement(By.cssSelector(updatedBlogPostH1)).getText)
       _ = updatedTitle shouldBe blogTitleContent
-//      post_id_content = webDriver.findElement(By.cssSelector(postIdContentH1)).getText
       _ <- IO(webDriver.findElement(By.cssSelector(deleteAllBlogPostsButton)).click())
       handleAlert <- IO(webDriver.switchTo().alert().accept())
-      _ <- IO.sleep(sleepTime)
+      _ <- IO(wait(webDriver).until { driver =>
+        driver.findElement(By.cssSelector(deleteMessageParagraph)).isDisplayed
+      })
       delete_message <- IO(webDriver.findElement(By.cssSelector(deleteMessageParagraph)).getText)
       _ <- IO(delete_message shouldBe deletedAllBlogPostsContent)
     } yield {

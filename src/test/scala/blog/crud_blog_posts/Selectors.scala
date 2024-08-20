@@ -4,8 +4,8 @@ trait Selectors {
 
   val firstBlogPostReadMeLink = "#root > div > main > div > ul > li:nth-child(1) > div > a"
 
-  val updatedBlogPostH1 = "#root > div > main > div > div:nth-child(1) > div > h1"
-//  val postIdContentH1 = "#root > div > main > div > div:nth-child(1) > div > h1"
+//  val updatedBlogPostH1 = "#root > div > main > div > div:nth-child(1) > div > div.mt-4 > h1"
+  val updatedBlogPostH1 = "#post-title"
 
   val navBarCreatePostButton = "#create-blog-post"
 
@@ -18,7 +18,7 @@ trait Selectors {
   val createBlogPostButton = "#root > div > div > div > form > button"
   val deleteAllBlogPostsButton = "#root > div > main > div > div.flex.space-x-4 > form > div > button"
 
-  val deleteMessageParagraph = "#root > div > main > div > div > form > div > div > p"
+  val deleteMessageParagraph = "#delete-button-response-body"
 
 
 }

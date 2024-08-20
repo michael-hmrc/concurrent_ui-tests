@@ -15,11 +15,11 @@ import scala.concurrent.duration.{DurationInt, FiniteDuration}
 
 trait BaseSpec extends Matchers {
 
-  val sleepTime: FiniteDuration = 10.seconds
+  val sleepTime: FiniteDuration = 1000.seconds
 
   val configReader: ConfigReader[IO] = ConfigReader[IO]
 
-  def wait(driver: WebDriver): WebDriverWait = new WebDriverWait(driver, ofSeconds(20), ofMillis(500))
+  def wait(driver: WebDriver): WebDriverWait = new WebDriverWait(driver, ofSeconds(5), ofMillis(500))
 
   val chromedriverPath: IO[String] =
     environment() match {
