@@ -4,12 +4,11 @@ trait Selectors {
 
   val firstBlogPostReadMeLink = "#read-more-mikey-1"
 
-//  val updatedBlogPostH1 = "#root > div > main > div > div:nth-child(1) > div > div.mt-4 > h1"
   val updatedBlogPostH1 = "#post-title"
 
   val navBarCreatePostButton = "#create-blog-post"
 
-  val createPostPageH1Selector = "#root > div > div > h1"
+  val createPostPageH1Selector = "#create-post"
 
   val titleFormInput = "#root > div > div > div > form > div:nth-child(1) > label > input"
   val blogPostIdFormInput = "#root > div > div > div > form > div:nth-child(2) > label > input"

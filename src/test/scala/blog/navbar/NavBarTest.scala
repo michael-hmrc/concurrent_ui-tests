@@ -16,7 +16,7 @@ object NavBarTest extends SimpleIOSuite with BaseSpec {
         _ <- IO(driver.get(homePageUrl))
         getHomePageHeading = driver.findElement(By.cssSelector("#home")).getText
         _ <- IO(getHomePageHeading shouldBe "Home")
-        aboutLink: WebElement = driver.findElement(By.id("about"))
+        aboutLink: WebElement = driver.findElement(By.id("about-me"))
         _ <- IO(aboutLink.click())
         aboutPageH1: String = driver.findElement(By.cssSelector("#about")).getText
         _ <- IO(aboutPageH1 shouldBe "About")
@@ -35,7 +35,7 @@ object NavBarTest extends SimpleIOSuite with BaseSpec {
         _ <- IO(getHomePageHeading shouldBe "Home")
         contactLink: WebElement = driver.findElement(By.id("contact"))
         _ <- IO(contactLink.click())
-        contactPageH1: String = driver.findElement(By.cssSelector("#contact-details")).getText
+        contactPageH1: String = driver.findElement(By.cssSelector("#contacts-page")).getText
       } yield {
         expect(contactPageH1 == "Contact Details")
       }
@@ -50,7 +50,7 @@ object NavBarTest extends SimpleIOSuite with BaseSpec {
         _ <- IO(getHomePageHeading shouldBe "Home")
         interestsLink: WebElement = driver.findElement(By.id("interests"))
         _ <- IO(interestsLink.click())
-        interestsPageH1: String = driver.findElement(By.cssSelector("#root > div > div.flex-grow.container.mx-auto.pt-4 > div > h1")).getText
+        interestsPageH1: String = driver.findElement(By.cssSelector("#interests")).getText
       } yield {
         expect(interestsPageH1 == "Interests")
       }
@@ -65,7 +65,7 @@ object NavBarTest extends SimpleIOSuite with BaseSpec {
         _ <- IO(getHomePageHeading shouldBe "Home")
         skillsLink: WebElement = driver.findElement(By.id("skills"))
         _ <- IO(skillsLink.click())
-        skillsPageH1: String = driver.findElement(By.cssSelector("#root > div > div.flex-grow.container.mx-auto.pt-4 > h1")).getText
+        skillsPageH1: String = driver.findElement(By.cssSelector("#skills")).getText
       } yield {
         expect(skillsPageH1 == "Skills")
       }
@@ -80,7 +80,7 @@ object NavBarTest extends SimpleIOSuite with BaseSpec {
         _ <- IO(getHomePageHeading shouldBe "Home")
         workLogLink: WebElement = driver.findElement(By.id("work-log"))
         _ <- IO(workLogLink.click())
-        workLogPageH1: String = driver.findElement(By.cssSelector("#root > div > div.container.mx-auto.p-4 > h1")).getText
+        workLogPageH1: String = driver.findElement(By.cssSelector("#worklog")).getText
       } yield {
         expect(workLogPageH1 == "Work Log")
       }
