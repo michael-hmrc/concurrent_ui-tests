@@ -12,7 +12,7 @@ import scala.concurrent.duration.DurationInt
 
 trait SharedUserSteps extends BaseSpec with Selectors {
 
-//  def ioSleep(timeInSeconds:Int) = IO.sleep(timeInSeconds.seconds)
+  def ioSleep(timeInSeconds:Int) = IO.sleep(timeInSeconds.seconds)
 
   implicit class WebDriverExtensions(webdriver: WebDriver)  {
 
@@ -118,7 +118,6 @@ trait SharedUserSteps extends BaseSpec with Selectors {
         driver.findByCss(blogPostH1(updatedBlogPost.postId)).isDisplayed
       })
       createdPostTitle <- IO(webDriver.findByCss(blogPostH1(updatedBlogPost.postId)).getText)
-//      _ <- IO.sleep(sleepTime)
       _ <- IO(createdPostTitle shouldBe updatedBlogPost.title)
     } yield {
       webDriver
