@@ -12,24 +12,23 @@ import scala.concurrent.duration.DurationInt
 
 trait SharedUserSteps extends BaseSpec with Selectors {
 
-  def ioSleep(timeInSeconds:Int) = IO.sleep(timeInSeconds.seconds)
+  def ioSleep(timeInSeconds: Int) = IO.sleep(timeInSeconds.seconds)
 
-  implicit class WebDriverExtensions(webdriver: WebDriver)  {
+  implicit class WebDriverExtensions(webdriver: WebDriver) {
 
-    // Step 2: Implement the extension methods
-    def findByCss(selector:String): WebElement = {
+    def findByCss(selector: String): WebElement = {
       webdriver.findElement(By.cssSelector(selector))
     }
 
-    def findById(id:String): WebElement = {
+    def findById(id: String): WebElement = {
       webdriver.findElement(By.id(id))
     }
 
-    def findByLinkText(linkText:String): WebElement = {
+    def findByLinkText(linkText: String): WebElement = {
       webdriver.findElement(By.linkText(linkText))
     }
 
-    def findByXPath(xpath:String): WebElement = {
+    def findByXPath(xpath: String): WebElement = {
       webdriver.findElement(By.xpath(xpath))
     }
   }
@@ -134,7 +133,7 @@ trait SharedUserSteps extends BaseSpec with Selectors {
         driver.findByCss(deleteMessageParagraph).isDisplayed
       })
       delete_message <- IO(webDriver.findByCss(deleteMessageParagraph).getText)
-      _ <- IO(delete_message shouldBe deletedUpdatedPostContent)
+      _ <- IO(delete_message shouldBe deletedUpdatedPostContent(blogPost.title))
     } yield {
       webDriver
     }

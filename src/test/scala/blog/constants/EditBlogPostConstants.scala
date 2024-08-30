@@ -6,9 +6,9 @@ object EditBlogPostConstants {
 
   val editPostPageH1Content = "Edit a blog post"
 
-  val blogTitleContent = "Fake Blog Post Title 2"
-  val blogPostId = "blog-post-2"
-  val blogPostContent = "some content"
+  private val blogTitleContent = "Fake Blog Post Title 2"
+  private val blogPostId = "blog-post-2"
+  private val blogPostContent = "some content"
 
   val initialEditBlogPostData =
     BlogPost(
@@ -28,7 +28,7 @@ object EditBlogPostConstants {
       updatedBlogPostContent
     )
 
-  val deletedUpdatedPostContent = "Blog post 'Fake Updated Blog Post Title 2' has been deleted"
+  def deletedUpdatedPostContent(title:String) = s"Blog post '$title' has been deleted"
 
 
 }

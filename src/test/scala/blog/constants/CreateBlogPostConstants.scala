@@ -6,13 +6,13 @@ object CreateBlogPostConstants {
 
   val createPostPageH1Content = "Create a new blog post"
 
-  val blogTitleContent = "Fake Blog Post Title 1"
-  val blogPostId = "blog-post-1"
-  val blogPostContent = "some content"
+  private val blogTitleContent = "Fake Blog Post Title 1"
+  private val blogPostId = "blog-post-1"
+  private val blogPostContent = "some content"
 
   val deletedAllBlogPostsContent = "Blog post 'Fake Blog Post Title 1' has been deleted"
 
-  val blogPostData =
+  val createBlogPostData: BlogPost =
     BlogPost(
       blogTitleContent,
       blogPostId,

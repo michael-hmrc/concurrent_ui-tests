@@ -1,6 +1,6 @@
 package blog.crud_blog_posts
 
-import blog.constants.CreateBlogPostConstants.{blogPostData, blogTitleContent}
+import blog.constants.CreateBlogPostConstants.createBlogPostData
 import weaver._
 
 object CreatePostTest extends SimpleIOSuite with SharedUserSteps with Selectors {
@@ -11,10 +11,10 @@ object CreatePostTest extends SimpleIOSuite with SharedUserSteps with Selectors 
     withWebDriver { driver =>
       for {
         webDriver1 <- navToCreatePostPage(driver)
-        webDriver2 <- submitCreateBlogPost(webDriver1, blogPostData)
-        updatedTitle <- checkCreatedBlogPost(webDriver2, blogPostData)
+        webDriver2 <- submitCreateBlogPost(webDriver1, createBlogPostData)
+        webDriver <- checkCreatedBlogPost(webDriver2, createBlogPostData)
+        _ <- deleteBlogPost(webDriver, createBlogPostData)
       } yield {
-//        expect(updatedTitle == blogTitleContent)
         success
       }
     }
