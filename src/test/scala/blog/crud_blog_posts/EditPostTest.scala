@@ -8,7 +8,7 @@ object EditPostTest extends SimpleIOSuite with SharedUserSteps with Selectors {
 
   override def maxParallelism = 1
 
-  test("When the user creates a Blog Post and Edits the blgo post, the user should see an Updated blog post'") {
+  test("When the user creates a Blog Post and Edits the blog post, the user should see an Updated blog post'") {
     withWebDriver { driver =>
       for {
         webDriver1 <- navToCreatePostPage(driver)
