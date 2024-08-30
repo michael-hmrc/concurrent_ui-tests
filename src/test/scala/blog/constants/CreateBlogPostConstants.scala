@@ -1,13 +1,22 @@
 package blog.constants
 
+import blog.models.BlogPost
+
 object CreateBlogPostConstants {
 
-  val blogTitleContent = "Fake Blog Post Title 1"
-  val deletedAllBlogPostsContent = "Blog post 'Fake Blog Post Title 1' has been deleted"
+  val createPostPageH1Content = "Create a new blog post"
 
-  val blogPostId = "mikey-1"
+  val blogTitleContent = "Fake Blog Post Title 1"
+  val blogPostId = "blog-post-1"
   val blogPostContent = "some content"
 
-  val createPostPageH1Content = "Create a new blog post"
+  val deletedAllBlogPostsContent = "Blog post 'Fake Blog Post Title 1' has been deleted"
+
+  val blogPostData =
+    BlogPost(
+      blogTitleContent,
+      blogPostId,
+      blogPostContent
+    )
 
 }

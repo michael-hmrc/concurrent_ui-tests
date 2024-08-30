@@ -2,9 +2,13 @@ package blog.crud_blog_posts
 
 trait Selectors {
 
-  val firstBlogPostReadMeLink = "#read-more-mikey-1"
+  def blogPostH2Link(title: String) = s"#${title.replaceAll(" ", "-")}-link"
 
-  val updatedBlogPostH1 = "#post-title"
+  def blogPostReadMeLink(i: Int) = s"#read-more-blog-post-$i"
+
+  def blogPostH1(postId: String) = s"#blog-post-${postId}"
+
+  def editPostButton() = s"#edit-blog-post-button"
 
   val navBarCreatePostButton = "#create-blog-post"
 
@@ -16,6 +20,7 @@ trait Selectors {
 
   val createBlogPostButton = "#root > div > div > div > form > button"
   val deleteAllBlogPostsButton = "#root > div > main > div > div.flex.space-x-4 > form > div > button"
+  val deleteSingleBlogPostsButton = "#delete-blog-post"
 
   val deleteMessageParagraph = "#delete-button-response-body"
 
