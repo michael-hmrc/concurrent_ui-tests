@@ -6,7 +6,7 @@ import cats.effect._
 import org.openqa.selenium._
 import weaver._
 
-object NavBarTest extends SimpleIOSuite with BaseSpec {
+object NavBarTest extends SimpleIOSuite with BaseSpec with WebDriverExtension {
 
   override def maxParallelism = 3
 
@@ -14,11 +14,11 @@ object NavBarTest extends SimpleIOSuite with BaseSpec {
     withWebDriver { driver =>
       for {
         _ <- IO(driver.get(homePageUrl))
-        getHomePageHeading = driver.findElement(By.cssSelector("#home")).getText
+        getHomePageHeading = driver.findByCss("#home").getText
         _ <- IO(getHomePageHeading shouldBe "Home")
-        aboutLink: WebElement = driver.findElement(By.id("about-me"))
+        aboutLink: WebElement = driver.findById("about-me")
         _ <- IO(aboutLink.click())
-        aboutPageH1: String = driver.findElement(By.cssSelector("#about")).getText
+        aboutPageH1: String = driver.findByCss("#about").getText
         _ <- IO(aboutPageH1 shouldBe "About")
       } yield {
         expect(aboutPageH1 == "About")
@@ -31,11 +31,11 @@ object NavBarTest extends SimpleIOSuite with BaseSpec {
 
       for {
         _ <- IO(driver.get(homePageUrl))
-        getHomePageHeading = driver.findElement(By.cssSelector("#home")).getText
+        getHomePageHeading = driver.findByCss("#home").getText
         _ <- IO(getHomePageHeading shouldBe "Home")
-        contactLink: WebElement = driver.findElement(By.id("contact"))
+        contactLink: WebElement = driver.findById("contact")
         _ <- IO(contactLink.click())
-        contactPageH1: String = driver.findElement(By.cssSelector("#contacts-page")).getText
+        contactPageH1: String = driver.findByCss("#contacts-page").getText
       } yield {
         expect(contactPageH1 == "Contact Details")
       }
@@ -46,11 +46,11 @@ object NavBarTest extends SimpleIOSuite with BaseSpec {
     withWebDriver { driver =>
       for {
         _ <- IO(driver.get(homePageUrl))
-        getHomePageHeading = driver.findElement(By.cssSelector("#home")).getText
+        getHomePageHeading = driver.findByCss("#home").getText
         _ <- IO(getHomePageHeading shouldBe "Home")
-        interestsLink: WebElement = driver.findElement(By.id("interests"))
+        interestsLink: WebElement = driver.findById("interests")
         _ <- IO(interestsLink.click())
-        interestsPageH1: String = driver.findElement(By.cssSelector("#interests")).getText
+        interestsPageH1: String = driver.findByCss("#interests").getText
       } yield {
         expect(interestsPageH1 == "Interests")
       }
@@ -61,11 +61,11 @@ object NavBarTest extends SimpleIOSuite with BaseSpec {
     withWebDriver { driver =>
       for {
         _ <- IO(driver.get(homePageUrl))
-        getHomePageHeading = driver.findElement(By.cssSelector("#home")).getText
+        getHomePageHeading = driver.findByCss("#home").getText
         _ <- IO(getHomePageHeading shouldBe "Home")
-        skillsLink: WebElement = driver.findElement(By.id("skills"))
+        skillsLink: WebElement = driver.findById("skills")
         _ <- IO(skillsLink.click())
-        skillsPageH1: String = driver.findElement(By.cssSelector("#skills")).getText
+        skillsPageH1: String = driver.findByCss("#skills").getText
       } yield {
         expect(skillsPageH1 == "Skills")
       }
@@ -76,11 +76,11 @@ object NavBarTest extends SimpleIOSuite with BaseSpec {
     withWebDriver { driver =>
       for {
         _ <- IO(driver.get(homePageUrl))
-        getHomePageHeading = driver.findElement(By.cssSelector("#home")).getText
+        getHomePageHeading = driver.findByCss("#home").getText
         _ <- IO(getHomePageHeading shouldBe "Home")
-        workLogLink: WebElement = driver.findElement(By.id("worklog-nav"))
+        workLogLink: WebElement = driver.findById("worklog-nav")
         _ <- IO(workLogLink.click())
-        workLogPageH1 <- IO(driver.findElement(By.cssSelector("#worklog")).getText)
+        workLogPageH1 <- IO(driver.findByCss("#worklog").getText)
         _ <- IO(workLogPageH1 shouldBe "Work Log")
       } yield {
         success
@@ -92,15 +92,15 @@ object NavBarTest extends SimpleIOSuite with BaseSpec {
     withWebDriver { driver =>
       for {
         _ <- IO(driver.get(homePageUrl))
-        getHomePageHeading = driver.findElement(By.cssSelector("#home")).getText
+        getHomePageHeading = driver.findByCss("#home").getText
         _ <- IO(getHomePageHeading shouldBe "Home")
-        assetsLink: WebElement = driver.findElement(By.id("assets"))
+        assetsLink: WebElement = driver.findById("assets")
         _ <- IO(assetsLink.click())
         _ <-
           IO(wait(driver).until { driver =>
-            driver.findElement(By.cssSelector("#root > div > div > h1")).isDisplayed
+            driver.findByCss("#root > div > div > h1").isDisplayed
           })
-        assetsPageH1: String = driver.findElement(By.cssSelector("#root > div > div > h1")).getText
+        assetsPageH1: String = driver.findByCss("#root > div > div > h1").getText
       } yield {
         expect(assetsPageH1 == "Assets")
       }

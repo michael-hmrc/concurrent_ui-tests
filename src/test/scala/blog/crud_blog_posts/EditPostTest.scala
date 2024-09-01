@@ -1,10 +1,9 @@
 package blog.crud_blog_posts
 
 import blog.constants.EditBlogPostConstants._
-import cats.effect.IO
 import weaver._
 
-object EditPostTest extends SimpleIOSuite with SharedUserSteps with Selectors {
+object EditPostTest extends SimpleIOSuite with SharedUserSteps with BlogSelectors {
 
   override def maxParallelism = 1
 

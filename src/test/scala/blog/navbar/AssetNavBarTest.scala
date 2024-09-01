@@ -6,22 +6,22 @@ import cats.effect._
 import org.openqa.selenium._
 import weaver._
 
-object AssetNavBarTest extends SimpleIOSuite with BaseSpec {
+object AssetNavBarTest extends SimpleIOSuite with BaseSpec with WebDriverExtension {
 
   override def maxParallelism = 1
 
   def navToAssets(webDiver: WebDriver): IO[WebDriver] =
     for {
       _ <- IO(webDiver.get(homePageUrl))
-      getHomePageHeading = webDiver.findElement(By.cssSelector("#home")).getText
+      getHomePageHeading = webDiver.findByCss("#home").getText
       _ <- IO(getHomePageHeading shouldBe "Home")
-      assetsLink: WebElement = webDiver.findElement(By.id("assets"))
+      assetsLink: WebElement = webDiver.findById("assets")
       _ <- IO(assetsLink.click())
       _ <-
         IO(wait(webDiver).until { driver =>
-          driver.findElement(By.cssSelector("#root > div > div > h1")).isDisplayed
+          driver.findByCss("#root > div > div > h1").isDisplayed
         })
-      assetsPageH1 <- IO(webDiver.findElement(By.cssSelector("#root > div > div > h1")).getText)
+      assetsPageH1 <- IO(webDiver.findByCss("#root > div > div > h1").getText)
       _ = assetsPageH1 shouldBe "Assets"
     } yield {
       webDiver
@@ -29,11 +29,11 @@ object AssetNavBarTest extends SimpleIOSuite with BaseSpec {
 
   def buttonSteps(webDiver: WebDriver) = {
     for {
-      buttonLink <- IO(webDiver.findElement(By.id("buttons")))
+      buttonLink <- IO(webDiver.findById("buttons"))
       _ <- IO(buttonLink.click())
-      buttonPageH1 <- IO(webDiver.findElement(By.cssSelector("#root > div > div > h1")).getText)
+      buttonPageH1 <- IO(webDiver.findByCss("#root > div > div > h1").getText)
       _ = buttonPageH1 shouldBe "Buttons"
-      gradientLightUpButton <- IO(webDiver.findElement(By.cssSelector("#root > div > div > div > div:nth-child(4) > button")))
+      gradientLightUpButton <- IO(webDiver.findByCss("#root > div > div > div > div:nth-child(4) > button"))
       _ = gradientLightUpButton.getText shouldBe "Gradient with Light up Button"
     } yield {
       webDiver
@@ -44,7 +44,7 @@ object AssetNavBarTest extends SimpleIOSuite with BaseSpec {
     for {
       imagesLink <- IO(webDiver.findElement(By.id("images")))
       _ <- IO(imagesLink.click())
-      imagesPageH1 <- IO(webDiver.findElement(By.cssSelector("#root > div > div > h1")).getText)
+      imagesPageH1 <- IO(webDiver.findByCss("#root > div > div > h1").getText)
     } yield {
       imagesPageH1
     }

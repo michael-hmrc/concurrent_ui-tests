@@ -1,6 +1,6 @@
 package blog.crud_blog_posts
 
-trait Selectors {
+trait BlogSelectors {
 
   def blogPostH2Link(title: String) = s"#${title.replaceAll(" ", "-")}-link"
 

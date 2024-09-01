@@ -1,37 +1,18 @@
 package blog.crud_blog_posts
 
-import blog.BaseSpec
 import blog.PageUrls.homePageUrl
 import blog.constants.CreateBlogPostConstants._
 import blog.constants.EditBlogPostConstants.deletedUpdatedPostContent
 import blog.models.BlogPost
+import blog.{BaseSpec, WebDriverExtension}
 import cats.effect.IO
-import org.openqa.selenium.{By, WebDriver, WebElement}
+import org.openqa.selenium.WebDriver
 
 import scala.concurrent.duration.DurationInt
 
-trait SharedUserSteps extends BaseSpec with Selectors {
+trait SharedUserSteps extends BaseSpec with BlogSelectors with WebDriverExtension {
 
   def ioSleep(timeInSeconds: Int) = IO.sleep(timeInSeconds.seconds)
-
-  implicit class WebDriverExtensions(webdriver: WebDriver) {
-
-    def findByCss(selector: String): WebElement = {
-      webdriver.findElement(By.cssSelector(selector))
-    }
-
-    def findById(id: String): WebElement = {
-      webdriver.findElement(By.id(id))
-    }
-
-    def findByLinkText(linkText: String): WebElement = {
-      webdriver.findElement(By.linkText(linkText))
-    }
-
-    def findByXPath(xpath: String): WebElement = {
-      webdriver.findElement(By.xpath(xpath))
-    }
-  }
 
   def navToCreatePostPage(webDriver: WebDriver): IO[WebDriver] = {
     for {
