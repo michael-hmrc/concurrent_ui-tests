@@ -78,11 +78,12 @@ object NavBarTest extends SimpleIOSuite with BaseSpec {
         _ <- IO(driver.get(homePageUrl))
         getHomePageHeading = driver.findElement(By.cssSelector("#home")).getText
         _ <- IO(getHomePageHeading shouldBe "Home")
-        workLogLink: WebElement = driver.findElement(By.id("worklog"))
+        workLogLink: WebElement = driver.findElement(By.id("worklog-nav"))
         _ <- IO(workLogLink.click())
-        workLogPageH1: String = driver.findElement(By.cssSelector("#worklog")).getText
+        workLogPageH1 <- IO(driver.findElement(By.cssSelector("#worklog")).getText)
+        _ <- IO(workLogPageH1 shouldBe "Work Log")
       } yield {
-        expect(workLogPageH1 == "Work Log")
+        success
       }
     }
   }
