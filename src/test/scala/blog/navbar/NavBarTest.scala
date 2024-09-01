@@ -78,7 +78,7 @@ object NavBarTest extends SimpleIOSuite with BaseSpec {
         _ <- IO(driver.get(homePageUrl))
         getHomePageHeading = driver.findElement(By.cssSelector("#home")).getText
         _ <- IO(getHomePageHeading shouldBe "Home")
-        workLogLink: WebElement = driver.findElement(By.id("work-log"))
+        workLogLink: WebElement = driver.findElement(By.id("worklog"))
         _ <- IO(workLogLink.click())
         workLogPageH1: String = driver.findElement(By.cssSelector("#worklog")).getText
       } yield {
