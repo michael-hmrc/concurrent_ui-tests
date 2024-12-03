@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-sbt -Denvironment=local -Dheadless=true test
+sbt -Denvironment=local -Dheadless=false test
