@@ -2,7 +2,7 @@ ThisBuild / version := "0.1.0-SNAPSHOT"
 
 ThisBuild / scalaVersion := "2.13.14"
 
-name := "scalatest-selenium-project"
+name := "concurrent-ui-tests"
 
 version := "0.1"
 
